@@ -3,6 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ContasReceberApp.App">
 	<Application.Resources>
-    
+        <ResourceDictionary>
+            <!--Colors-->
+            <Color x:Key="NavigationPrimary">#0e0d17</Color>
+            <Color x:Key="NavigationBarText">#f5f5f5</Color>
+            <Color x:Key="BlackTextColor">#253748</Color>
+            <Color x:Key="RedColor">#e02626</Color>
+            <!--Global Styles-->
+            <Style x:Key="BaseLabelStyle" TargetType="{x:Type Label}">
+            </Style>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="BarTextColor" Value="{StaticResource NavigationBarText}" />
+            </Style>
+            <Style x:Key="RegularLabelStyle"
+                   TargetType="{x:Type Label}"
+                   BasedOn="{StaticResource BaseLabelStyle}">
+            </Style>
+        </ResourceDictionary>
 	</Application.Resources>
 </Application>

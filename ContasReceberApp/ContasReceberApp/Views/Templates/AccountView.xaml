@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContasReceberApp.Views.Templates.AccountView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="ServiceIconStyle" 
+                   TargetType="Image">
+                <Setter Property="HeightRequest" Value="60" />
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="LabelTextStyle" 
+                   TargetType="Label"
+                   BasedOn="{StaticResource RegularLabelStyle}">
+                <Setter Property="TextColor" Value="{StaticResource BlackTextColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="ValueTextStyle" 
+                   TargetType="Label"
+                   BasedOn="{StaticResource RegularLabelStyle}">
+                <Setter Property="TextColor" Value="{StaticResource RedColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Frame IsClippedToBounds="True"  BackgroundColor="White" CornerRadius="3"  WidthRequest="400" HeightRequest="270">
+            <Frame.OutlineColor>
+                <OnPlatform x:TypeArguments="Color" Android="#bdc0c3" iOS="#bdc0c3"/>
+            </Frame.OutlineColor>
+            <Frame.Margin>
+                <OnPlatform x:TypeArguments="Thickness" Android="7" iOS="7"/>
+            </Frame.Margin>
+            <Frame.Padding>
+                <OnPlatform x:TypeArguments="Thickness" Android="5" iOS="5"/>
+            </Frame.Padding>
+
+            <StackLayout Margin="5">
+                <Grid
+                    Margin="0, 0, 12, 0"
+                    VerticalOptions="StartAndExpand" 
+                    Padding="0"
+                    HorizontalOptions="FillAndExpand" 
+                    BackgroundColor="Transparent">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+
+                    <StackLayout Orientation="Horizontal" Grid.Row="0">
+                        <Label HorizontalOptions="StartAndExpand" Text="Categoria: " Style="{StaticResource LabelTextStyle}" />
+                        <Label HorizontalOptions="EndAndExpand" Text="{Binding CategoriaConta}" Style="{StaticResource ValueTextStyle}" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="1">
+                        <Label HorizontalOptions="StartAndExpand" Text="Conta:" Style="{StaticResource LabelTextStyle}"/>
+                        <Label  HorizontalOptions="EndAndExpand" Text="{Binding ContaBanco}" Style="{StaticResource ValueTextStyle}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="2">
+                        <Label HorizontalOptions="StartAndExpand" Text="Forma Pagamento: " Style="{StaticResource LabelTextStyle}"/>
+                        <Label  HorizontalOptions="StartAndExpand" Text="{Binding FormaPagamento}" Style="{StaticResource ValueTextStyle}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="3">
+                        <Label HorizontalOptions="StartAndExpand" Text="Valor: " Style="{StaticResource LabelTextStyle}"/>
+                        <Label HorizontalOptions="EndAndExpand" Text="{Binding ValorBruto}" Style="{StaticResource ValueTextStyle}"/>
+                        <Label HorizontalOptions="StartAndExpand" Text="Valor Liquido: " Style="{StaticResource LabelTextStyle}"/>
+                        <Label HorizontalOptions="EndAndExpand" Text="{Binding ValorLiquido}" Style="{StaticResource ValueTextStyle}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="4">
+                        <Label HorizontalOptions="StartAndExpand" Text="Valor Desconto: " Style="{StaticResource LabelTextStyle}"/>
+                        <Label  HorizontalOptions="EndAndExpand" Text="{Binding ValorDesconto}" Style="{StaticResource ValueTextStyle}"/>
+                        <Label HorizontalOptions="StartAndExpand" Text="Valor Multa: " Style="{StaticResource LabelTextStyle}"/>
+                        <Label  HorizontalOptions="EndAndExpand" Text="{Binding ValorMulta}" Style="{StaticResource ValueTextStyle}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="5">
+                        <Label HorizontalOptions="StartAndExpand" Text="Status: " Style="{StaticResource LabelTextStyle}"/>
+                        <Label  HorizontalOptions="EndAndExpand" Text="{Binding Status}" Style="{StaticResource ValueTextStyle}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="6">
+                        <Button x:Name="BtnPagarConta"
+                                BindingContext="{Binding}"
+                                Text="Pagar Conta"
+                                Clicked="BtnPagarConta_Clicked">
+                        </Button>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

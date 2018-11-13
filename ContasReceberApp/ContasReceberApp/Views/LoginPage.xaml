@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContasReceberApp.Views.LoginPage">
+    <ContentPage.Content>
+        <StackLayout 
+             Spacing="20" 
+             VerticalOptions="Center" 
+             HorizontalOptions="Center">
+            <Label Text="Contas à Receber - Tecnofit" 
+             TextColor="Navy" 
+             FontSize="20"/>
+            <Entry x:Name="txtLogin" 
+             Placeholder="Informe Login" 
+             Text="{Binding Entity.Email}"
+             FontSize="20"/>
+            <Entry x:Name="txtSenha" 
+             Placeholder="Informe Senha"
+             Text="{Binding Entity.Password}"
+             FontSize="20" 
+             IsPassword="true"/>
+            <Button x:Name="btnLogin" 
+              Text="Acessar aplicativo" 
+              TextColor="White" 
+              BackgroundColor="Teal" 
+              FontSize="20"
+              Command="{Binding LoginCommand}"/>
+            <Label x:Name="lblMsg" 
+             FontSize="20" 
+             TextColor="Red" 
+             FontAttributes="Bold"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -2,13 +2,52 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ContasReceberApp"
+             xmlns:view="clr-namespace:ContasReceberApp.Views.Templates"
+             xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton" 
+             Title="Contas à Receber"
              x:Class="ContasReceberApp.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-    	<Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
-
+        <RelativeLayout>
+        <StackLayout Orientation="Vertical"
+                Padding="10"
+                Margin="0,20,0,0"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
+            <Label Margin="10, 10, 10, 0"
+                    Text="Filtro data"/>
+            <DatePicker
+                     x:Name="InputData"
+                    Margin="10, 0"
+                    MinimumDate="01/01/1970" 
+                    MaximumDate="01/01/2100"
+                    Format="dd/MM/yyyy"
+                    DateSelected="InputData_DateSelected"/>
+            <ListView x:Name="AccountsListView"
+                                         VerticalOptions="FillAndExpand"
+                                         HasUnevenRows="true"
+                                         IsPullToRefreshEnabled="true"
+                                         SeparatorVisibility="None"
+                                         CachingStrategy="RecycleElement"
+                                         ItemTapped="AccountsListView_ItemTapped">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <view:AccountView/>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <controls:FloatingActionButton x:Name="InsertAccount"
+                                       Image="add.png"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       ButtonColor="Transparent"
+                                       HeightRequest="150"
+                                       WidthRequest="150"        
+                                       Clicked="InsertAccount_Clicked"
+                                       
+        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-125}"  
+        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-125}" />
+        </RelativeLayout>
 </ContentPage>

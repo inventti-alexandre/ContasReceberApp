@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContasReceberApp.Views.InsertPaymentPage">
+    <ContentPage.Content>
+        <StackLayout Padding="10"
+                     Margin="0,20,0,0">
+            <Label Margin="10, 0" 
+                                Text="Selecione o centro de responsabilidade" 
+                                Font="Arial, 13"
+                                TextColor="#808080"/>
+            <Picker x:Name="CentroResponsabilidadeListPicker"
+                            WidthRequest="500"
+                            Margin="10, 0"
+                            HorizontalOptions="Center" 
+                            SelectedIndexChanged="CentroResponsabilidadeListPicker_SelectedIndexChanged"/>
+            <Label Margin="10, 0" 
+                                Text="Selecione a forma de cobrança" 
+                                Font="Arial, 13"
+                                TextColor="#808080"/>
+            <Picker x:Name="FormaCobrancaListPicker"
+                            WidthRequest="500"
+                            Margin="10, 0"
+                            HorizontalOptions="Center" 
+                            SelectedIndexChanged="FormaCobrancaListPicker_SelectedIndexChanged"/>
+            <Label Margin="10, 0" 
+                                Text="Informe a Data de Pagamento" 
+                                Font="Arial, 13"
+                                TextColor="#808080"/>
+            <DatePicker
+                    x:Name="InputDataPagamento"
+                    Margin="10, 0"               
+                   MinimumDate="01/01/1970" 
+                   MaximumDate="01/01/2100"
+                   Format="dd/MM/yyyy"
+                    DateSelected="InputDataPagamento_DateSelected"/>
+            <Entry Margin="10, 0" 
+                                Text="{Binding AccountInsert.ValorPago}" 
+                                Placeholder="Informe o valor pago"
+                                Keyboard="Numeric"/>
+            <Button
+                     Text="CONFIRMAR"
+                            WidthRequest="320"
+                            Clicked="Button_Clicked"
+                            HeightRequest="60"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

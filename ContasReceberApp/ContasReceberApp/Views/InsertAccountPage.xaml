@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContasReceberApp.Views.InsertAccountPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="5"
+                         Margin="0,20,0,0" >
+                <Label Margin="10, 0" 
+                                Text="Selecione a forma de pagamento" 
+                                Font="Arial, 13"
+                                TextColor="#808080"/>
+                <Picker x:Name="FormaPagamentoListPicker"
+                            WidthRequest="500"
+                            Margin="10, 0"
+                            HorizontalOptions="Center" 
+                            SelectedIndexChanged="FormaPagamentoListPicker_SelectedIndexChanged"/>
+                <Label Margin="10, 0" 
+                                Text="Selecione a categoria conta" 
+                                Font="Arial, 13"
+                                TextColor="#808080"/>
+                <Picker x:Name="CategoriaContaListPicker"
+                            WidthRequest="500"
+                            Margin="10, 0"
+                            HorizontalOptions="Center" 
+                            SelectedIndexChanged="CategoriaContaListPicker_SelectedIndexChanged"/>
+                <Label Margin="10, 0" 
+                                Text="Selecione o centro de responsabilidade" 
+                                Font="Arial, 13"
+                                TextColor="#808080"/>
+                <Picker x:Name="CentroResponsabilidadeListPicker"
+                            WidthRequest="500"
+                            Margin="10, 0"
+                            HorizontalOptions="Center" 
+                            SelectedIndexChanged="CentroresponsabilidadeListPicker_SelectedIndexChanged"/>
+                <Label Margin="10, 0" 
+                                Text="Selecione a conta banco" 
+                                Font="Arial, 13"
+                                TextColor="#808080"/>
+                <Picker x:Name="ContaBancoListPicker"
+                            WidthRequest="500"
+                            Margin="10, 0"
+                            HorizontalOptions="Center" 
+                            SelectedIndexChanged="ContaBancoListPicker_SelectedIndexChanged"/>
+                <Label Margin="10, 0" 
+                                Text="Informe a Data de Vencimento" 
+                                Font="Arial, 13"
+                                TextColor="#808080"/>
+                <DatePicker
+                    x:Name="InputDataVencimento"
+                    Margin="10, 0"               
+                   MinimumDate="01/01/1970" 
+                   MaximumDate="01/01/2100"
+                   Format="dd/MM/yyyy"
+                    DateSelected="InputDataVencimento_DateSelected"/>
+                <Entry Margin="10, 0" 
+                                Text="{Binding Account.Historico}" 
+                                Placeholder="Informe o histórico"/>
+                <Label Margin="10, 0" 
+                                Text="Informe o valor da conta" 
+                                Font="Arial, 13"
+                                TextColor="#808080"/>
+                <Entry Margin="10, 0" 
+                                Text="{Binding Account.Valor}" 
+                                Placeholder="Informe o valor"
+                                Keyboard="Numeric"/>
+                <Label Margin="10, 0" 
+                                Text="Informe o valor do desconto" 
+                                Font="Arial, 13"
+                                TextColor="#808080"/>
+                <Entry Margin="10, 0" 
+                                Text="{Binding Account.ValorDesconto}" 
+                                Placeholder="Informe o valor desconto"
+                                Keyboard="Numeric"/>
+                <Label Margin="10, 0" 
+                                Text="Informe o valor da multa" 
+                                Font="Arial, 13"
+                                TextColor="#808080"/>
+                <Entry Margin="10, 0" 
+                                Text="{Binding Account.ValorMulta}" 
+                                Placeholder="Informe o valor multa"
+                                Keyboard="Numeric"/>
+                <Button
+                     Text="CONFIRMAR"
+                            WidthRequest="320"
+                            Clicked="Button_Clicked"
+                            HeightRequest="60"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
