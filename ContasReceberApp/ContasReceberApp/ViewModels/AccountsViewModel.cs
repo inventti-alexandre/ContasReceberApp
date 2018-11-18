@@ -1,7 +1,6 @@
 ﻿using ContasReceberApp.Models;
 using ContasReceberApp.Services;
 using ContasReceberApp.Views;
-using ContasReceberApp.Views.Templates;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -19,22 +18,8 @@ namespace ContasReceberApp.ViewModels
         public AccountsViewModel()
         {
             this.Entity = new AccountStatement();
-            //Recebe a confirmação do envio do cadastro da conta
+            //Recebe a confirmação do envio do cadastro da conta 
             MessagingCenter.Subscribe<InsertAccountPage, AccountInsert>(this, "InserirAccount", async (obj, account) =>
-            {
-                var _account = account as AccountInsert;
-                RestService.Send("financeiro/conta-pr/cadastro", account as AccountInsert,
-                //onSuccess
-                (result) => {
-                    GetAccounts(DateTime.Now.ToString("yyyy-MM-dd"));
-                },
-
-                //onFailure
-                (e) => _iPopupsService.DisplayAlert("erro", e, "OK")
-                );
-            });
-            //Recebe a confirmação do envio do pagamento da conta
-            MessagingCenter.Subscribe<InsertPaymentPage, AccountInsert>(this, "PayAccount", async (obj, account) =>
             {
                 var _account = account as AccountInsert;
                 RestService.Send("financeiro/conta-pr/cadastro", account as AccountInsert,

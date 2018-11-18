@@ -1,91 +1,252 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behavior="clr-namespace:ContasReceberApp.Behaviours"
+             xmlns:components="clr-namespace:ContasReceberApp.Components.Entry"
+             xmlns:picker="clr-namespace:ContasReceberApp.Components.Picker"
+             xmlns:date="clr-namespace:ContasReceberApp.Components.DatePicker"
              x:Class="ContasReceberApp.Views.InsertAccountPage">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Padding="5"
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" Padding="10,10" BackgroundColor="{StaticResource NavigationPrimary}">
+                <Image Source="transaction.png"
+                    WidthRequest="40"
+                    HeightRequest="40"/>
+                <StackLayout Padding="10, 10" BackgroundColor="{StaticResource NavigationPrimary}">
+                    <Label Text="Nova transação" x:Name="lbTitle" FontSize="26"   TextColor="White" />
+                    <Label Text="CONTA A RECEBER"  TextColor="White"/>
+                </StackLayout>
+            </StackLayout>
+            <ScrollView>
+                <StackLayout Padding="5"
                          Margin="0,20,0,0" >
-                <Label Margin="10, 0" 
-                                Text="Selecione a forma de pagamento" 
-                                Font="Arial, 13"
-                                TextColor="#808080"/>
-                <Picker x:Name="FormaPagamentoListPicker"
-                            WidthRequest="500"
+                    <!--NOME DA TRANSAÇÃO-->
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand">
+                        <Frame 
                             Margin="10, 0"
-                            HorizontalOptions="Center" 
-                            SelectedIndexChanged="FormaPagamentoListPicker_SelectedIndexChanged"/>
-                <Label Margin="10, 0" 
-                                Text="Selecione a categoria conta" 
-                                Font="Arial, 13"
+                            Padding="0"
+                            HasShadow="False" 
+                            BorderColor="#e0e0e0"
+                            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                            AbsoluteLayout.LayoutFlags="All">
+                            <components:CustomEntry Margin="10, 0"                        
+                                                    Text="{Binding Account.Historico}"
+                                                     Placeholder="Nome da transação"
+                                                     TextChanged="CustomEntry_TextChanged"/>
+                        </Frame>
+                        <Label x:Name="NomeTransacaoCustomEntry"
+                                Margin="25, -5"
+                                IsVisible="False"
+                                Text="NOME DA TRANSAÇÃO" 
+                                Font="Arial, 12"
                                 TextColor="#808080"/>
-                <Picker x:Name="CategoriaContaListPicker"
-                            WidthRequest="500"
+                    </AbsoluteLayout>
+                    <!--CONTA BANCARIA-->
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand">
+                        <Frame 
                             Margin="10, 0"
-                            HorizontalOptions="Center" 
-                            SelectedIndexChanged="CategoriaContaListPicker_SelectedIndexChanged"/>
-                <Label Margin="10, 0" 
-                                Text="Selecione o centro de responsabilidade" 
-                                Font="Arial, 13"
+                            Padding="0"
+                            HasShadow="False" 
+                            BorderColor="#e0e0e0"
+                            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                            AbsoluteLayout.LayoutFlags="All">
+                            <picker:CustomPicker x:Name="ContaBancoListPicker"
+                                    WidthRequest="500"
+                                    Title="Conta bancária"
+                                    ItemDisplayBinding="{Binding Nome}"                         
+                                    Margin="10, 0"
+                                    HorizontalOptions="Center" 
+                                    SelectedIndexChanged="ContaBancoListPicker_SelectedIndexChanged"/>
+                        </Frame>
+                        <Label x:Name="ContaBancariaPicker"
+                                Margin="25, -5"
+                                IsVisible="False"
+                                Text="Conta Bancária" 
+                                Font="Arial, 12"
                                 TextColor="#808080"/>
-                <Picker x:Name="CentroResponsabilidadeListPicker"
-                            WidthRequest="500"
+                    </AbsoluteLayout>
+                    <!--CENTRO DE RESPONSABILIDADE-->
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand">
+                        <Frame 
                             Margin="10, 0"
-                            HorizontalOptions="Center" 
-                            SelectedIndexChanged="CentroresponsabilidadeListPicker_SelectedIndexChanged"/>
-                <Label Margin="10, 0" 
-                                Text="Selecione a conta banco" 
-                                Font="Arial, 13"
+                            Padding="0"
+                            HasShadow="False" 
+                            BorderColor="#e0e0e0"
+                            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                            AbsoluteLayout.LayoutFlags="All">
+                            <picker:CustomPicker x:Name="CentroResponsabilidadeListPicker"
+                                    WidthRequest="500"
+                                    Title="Centro de responsabilidade"
+                                    ItemDisplayBinding="{Binding Nome}"                         
+                                    Margin="10, 0"
+                                    HorizontalOptions="Center" 
+                                    SelectedIndexChanged="CentroresponsabilidadeListPicker_SelectedIndexChanged"/>
+                        </Frame>
+                        <Label x:Name="CentroResponsabilidadePicker"
+                                Margin="25, -5"
+                                IsVisible="False"
+                                Text="Centro de responsabilidade" 
+                                Font="Arial, 12"
                                 TextColor="#808080"/>
-                <Picker x:Name="ContaBancoListPicker"
-                            WidthRequest="500"
+                    </AbsoluteLayout>
+                    <!--CATEGORIA CONTA-->
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand">
+                        <Frame 
                             Margin="10, 0"
-                            HorizontalOptions="Center" 
-                            SelectedIndexChanged="ContaBancoListPicker_SelectedIndexChanged"/>
-                <Label Margin="10, 0" 
-                                Text="Informe a Data de Vencimento" 
-                                Font="Arial, 13"
+                            Padding="0"
+                            HasShadow="False" 
+                            BorderColor="#e0e0e0"
+                            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                            AbsoluteLayout.LayoutFlags="All">
+                            <picker:CustomPicker x:Name="CategoriaContaListPicker"
+                                    WidthRequest="500"
+                                    Title="Categoria"
+                                    ItemDisplayBinding="{Binding Nome}"                         
+                                    Margin="10, 0"
+                                    HorizontalOptions="Center" 
+                                    SelectedIndexChanged="CategoriaContaListPicker_SelectedIndexChanged"/>
+                        </Frame>
+                        <Label x:Name="CategoriaContaPicker"
+                                Margin="25, -5"
+                                IsVisible="False"
+                                Text="Categoria" 
+                                Font="Arial, 12"
                                 TextColor="#808080"/>
-                <DatePicker
-                    x:Name="InputDataVencimento"
-                    Margin="10, 0"               
-                   MinimumDate="01/01/1970" 
-                   MaximumDate="01/01/2100"
-                   Format="dd/MM/yyyy"
-                    DateSelected="InputDataVencimento_DateSelected"/>
-                <Entry Margin="10, 0" 
-                                Text="{Binding Account.Historico}" 
-                                Placeholder="Informe o histórico"/>
-                <Label Margin="10, 0" 
-                                Text="Informe o valor da conta" 
-                                Font="Arial, 13"
+                    </AbsoluteLayout>
+                    <!--FORMA COBRANÇA-->
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand">
+                        <Frame 
+                            Margin="10, 0"
+                            Padding="0"
+                            HasShadow="False" 
+                            BorderColor="#e0e0e0"
+                            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                            AbsoluteLayout.LayoutFlags="All">
+                            <picker:CustomPicker x:Name="FormaPagamentoListPicker"
+                                    WidthRequest="500"
+                                    Title="Forma de cobrança"
+                                    ItemDisplayBinding="{Binding Nome}"                         
+                                    Margin="10, 0"
+                                    HorizontalOptions="Center" 
+                                    SelectedIndexChanged="FormaPagamentoListPicker_SelectedIndexChanged"/>
+                        </Frame>
+                        <Label x:Name="FormaCobrancaPicker"
+                                Margin="25, -5"
+                                IsVisible="False"
+                                Text="Forma de cobrança" 
+                                Font="Arial, 12"
                                 TextColor="#808080"/>
-                <Entry Margin="10, 0" 
-                                Text="{Binding Account.Valor}" 
-                                Placeholder="Informe o valor"
-                                Keyboard="Numeric"/>
-                <Label Margin="10, 0" 
-                                Text="Informe o valor do desconto" 
-                                Font="Arial, 13"
+                    </AbsoluteLayout>
+                    <!--DATA DE VENCIMENTO-->
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand">
+                        <Frame 
+                            Margin="10, 0"
+                            Padding="0"
+                            HasShadow="False" 
+                            BorderColor="#e0e0e0"
+                            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                            AbsoluteLayout.LayoutFlags="All">
+                            <date:CustomDatePicker x:Name="InputDataVencimento"
+                                        Margin="10, 0"               
+                                        MinimumDate="01/01/1970" 
+                                        MaximumDate="01/01/2100"
+                                        Format="dd/MM/yyyy"
+                                        DateSelected="InputDataVencimento_DateSelected"/>
+                        </Frame>
+                        <Label x:Name="DataVencimentoDatePicker"
+                                Margin="25, -5"
+                                IsVisible="True"
+                                Text="Forma de cobrança" 
+                                Font="Arial, 12"
                                 TextColor="#808080"/>
-                <Entry Margin="10, 0" 
-                                Text="{Binding Account.ValorDesconto}" 
-                                Placeholder="Informe o valor desconto"
-                                Keyboard="Numeric"/>
-                <Label Margin="10, 0" 
-                                Text="Informe o valor da multa" 
-                                Font="Arial, 13"
+                    </AbsoluteLayout>
+                    <!--Valor Desconto-->
+                    <StackLayout Orientation="Horizontal">
+                        <AbsoluteLayout HorizontalOptions="StartAndExpand">
+                            <Frame 
+                            Margin="10, 0"
+                            Padding="0"
+                            HasShadow="False" 
+                            BorderColor="#e0e0e0"
+                            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                            AbsoluteLayout.LayoutFlags="All">
+                                <components:CustomEntry Margin="10, 0"                        
+                           Text="{Binding Account.ValorDesconto}" 
+                           Placeholder="R$ 0.000,00"
+                           Keyboard="Numeric">
+                                    <Entry.Behaviors>
+                                        <behavior:CurrencyMask />
+                                    </Entry.Behaviors>
+                                </components:CustomEntry>
+                            </Frame>
+                            <Label Margin="25, -5"
+                                Text="Desconto" 
+                                Font="Arial, 12"
                                 TextColor="#808080"/>
-                <Entry Margin="10, 0" 
-                                Text="{Binding Account.ValorMulta}" 
-                                Placeholder="Informe o valor multa"
-                                Keyboard="Numeric"/>
-                <Button
-                     Text="CONFIRMAR"
+                        </AbsoluteLayout>
+                        <!--Valor Multa-->
+                        <AbsoluteLayout HorizontalOptions="EndAndExpand">
+                            <Frame 
+                            Padding="0"
+                            Margin="10, 0"
+                            HasShadow="False" 
+                            BorderColor="#e0e0e0"
+                            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                            AbsoluteLayout.LayoutFlags="All">
+                                <components:CustomEntry Margin="10, 0"                        
+                           Text="{Binding Account.ValorMulta}" 
+                           Placeholder="R$ 0.000,00"
+                           Keyboard="Numeric">
+                                    <Entry.Behaviors>
+                                        <behavior:CurrencyMask />
+                                    </Entry.Behaviors>
+                                </components:CustomEntry>
+                            </Frame>
+                            <Label Margin="25, -5"
+                                Text="Multa" 
+                                Font="Arial, 12"
+                                TextColor="#808080"/>
+                        </AbsoluteLayout>
+                    </StackLayout>
+                    <!--Valor-->
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand">
+                        <Frame 
+                            Padding="0"
+                            Margin="10, 0"
+                            HasShadow="False" 
+                            BorderColor="#e0e0e0"
+                            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                            AbsoluteLayout.LayoutFlags="All">
+                            <components:CustomEntry Margin="10, 0"                        
+                           Text="{Binding Account.Valor}" 
+                           Placeholder="R$ 0.000,00"
+                           Keyboard="Numeric">
+                                <Entry.Behaviors>
+                                    <behavior:CurrencyMask />
+                                </Entry.Behaviors>
+                            </components:CustomEntry>
+                        </Frame>
+                        <Label Margin="25, -5"
+                                Text="Saldo final" 
+                                Font="Arial, 12"
+                                TextColor="#808080"/>
+                    </AbsoluteLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Valor Pago?" HorizontalOptions="EndAndExpand"/>
+                        <Switch x:Name="valorPagoBool" 
+                            Toggled="valorPagoBool_Toggled"                            
+                            OnColor="{StaticResource ButtonColor}"
+                            HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                    <Button
+                     Text="CRIAR TRANSAÇÃO"
                             WidthRequest="320"
                             Clicked="Button_Clicked"
+                            BackgroundColor="{StaticResource ButtonColor}"
                             HeightRequest="60"/>
-            </StackLayout>
-        </ScrollView>
+                </StackLayout>
+            </ScrollView>
+            
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -89,6 +89,9 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Components\DatePicker\CustomDatePickerRenderer.cs" />
+    <Compile Include="Components\Entry\CustomEntryRenderer.cs" />
+    <Compile Include="Components\Entry\CustomPickerRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -147,7 +150,10 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.0.0.446417" />
+    <PackageReference Include="LiveXAML">
+      <Version>2.1.50</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -157,9 +163,25 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\novo.png" />
+    <BundleResource Include="Resources\money.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\transaction.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\esquerda_filled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\direita_filled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\seta_longa_esquerda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\seta_longa_direita.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\add.png" />
   </ItemGroup>
+  <ItemGroup />
 </Project>

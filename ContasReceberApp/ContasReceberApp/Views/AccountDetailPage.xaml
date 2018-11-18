@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContasReceberApp.Views.AccountDetailPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="add.png"/>
+                    <On Platform="IOS" Value="add.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" Padding="10,10" BackgroundColor="{StaticResource NavigationPrimary}">
+                <Image Source="money.png"
+                    WidthRequest="40"
+                    HeightRequest="40"/>
+                <StackLayout Padding="10, 10" BackgroundColor="{StaticResource NavigationPrimary}">
+                    <Label Text="Extrato" FontSize="26"   TextColor="White" />
+                    <Label Text="DETALHAMENTO"  TextColor="White"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Orientation="Vertical"
+                         Margin="0,20,0,0"
+                         Padding="10">
+                <Grid                   
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="FillAndExpand" 
+                    BackgroundColor="Transparent">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+                    <Image Source="{Binding PathIcon}"
+                                       x:Name="ImgList" 
+                                       WidthRequest="60"
+                                       HeightRequest="60"
+                                       HorizontalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                    <Label Text="{Binding Historico}" LineBreakMode="NoWrap" FontSize="18" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="{Binding ValorBruto}" FontSize="18" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                    <Label Text="{Binding CategoriaConta}" FontSize="13" HorizontalOptions="StartAndExpand"/>
+                </StackLayout>
+                </Grid>
+                <BoxView Color="Black" WidthRequest ="100" HeightRequest="1"/>
+                <StackLayout Orientation="Horizontal" BackgroundColor="LightGray">
+                    <Label Text="Valor bruto" LineBreakMode="NoWrap" FontSize="18" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="{Binding ValorBruto}" FontSize="18" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <BoxView Color="Black" WidthRequest ="100" HeightRequest="1"/>
+                <StackLayout Orientation="Horizontal" BackgroundColor="LightGray">
+                    <Label Text="Valor liquído" LineBreakMode="NoWrap" FontSize="18" FontAttributes="Bold" HorizontalOptions="StartAndExpand" BackgroundColor="LightGray"/>
+                    <Label Text="{Binding ValorLiquido}" FontSize="18" HorizontalOptions="EndAndExpand" BackgroundColor="LightGray"/>
+                </StackLayout>
+                <BoxView Color="Black" WidthRequest ="100" HeightRequest="0.4"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Data de Vencimento" LineBreakMode="NoWrap" FontSize="18" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="{Binding DataVencimento}" FontSize="18" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <BoxView Color="Black" WidthRequest ="100" HeightRequest="0.4"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Método de pagamento" LineBreakMode="NoWrap" FontSize="18" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="{Binding FormaPagamento}" FontSize="18" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <BoxView Color="Black" WidthRequest ="100" HeightRequest="0.4"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Data crédito" LineBreakMode="NoWrap" FontSize="18" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="{Binding DataPagamento}" FontSize="18" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <BoxView Color="Black" WidthRequest ="100" HeightRequest="0.4"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Valor multa" LineBreakMode="NoWrap" FontSize="18" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="{Binding ValorMulta}" FontSize="18" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <BoxView Color="Black" WidthRequest ="100" HeightRequest="0.4"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Valor desconto" LineBreakMode="NoWrap" FontSize="18" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="{Binding ValorDesconto}" FontSize="18" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <BoxView Color="Black" WidthRequest ="100" HeightRequest="0.4"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Conta bancária" LineBreakMode="NoWrap" FontSize="18" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="{Binding ContaBanco}" FontSize="18" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+        </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

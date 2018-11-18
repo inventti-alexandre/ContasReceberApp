@@ -17,8 +17,8 @@ namespace ContasReceberApp
 	{
         private AccountsViewModel AccountsViewModel;
         public MainPage()
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
             BindingContext = AccountsViewModel = new AccountsViewModel();
             GetAccounts();
         }
@@ -51,7 +51,12 @@ namespace ContasReceberApp
 
         private void AccountsListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            Navigation.PushAsync(new InsertAccountPage(App.Parametros, (Account)e.Item));
+            Navigation.PushAsync(new AccountDetailPage((Account)e.Item));
+        }
+
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new InsertAccountPage(App.Parametros));
         }
     }
 }

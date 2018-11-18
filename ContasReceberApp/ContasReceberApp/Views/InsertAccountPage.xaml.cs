@@ -1,4 +1,5 @@
-﻿using ContasReceberApp.Models;
+﻿using ContasReceberApp.Components.Entry;
+using ContasReceberApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,16 +24,19 @@ namespace ContasReceberApp.Views
 		{
 			InitializeComponent ();
             Account = new AccountInsert();
-            CategoriaContaListPicker.ItemsSource = Parametros.ListarNomeCategoriaConta(Parametros.CategoriaConta);
-            FormaPagamentoListPicker.ItemsSource = Parametros.ListarNomeFormaCobranca(Parametros.FormaCobranca);
-            CentroResponsabilidadeListPicker.ItemsSource = Parametros.ListarNomeCentroResponsabilidade(Parametros.CentroResponsabilidade);
-            ContaBancoListPicker.ItemsSource = Parametros.ListarNomeContaBanco(Parametros.ContaBanco);
-            Account.DataVencimento = InputDataVencimento.Date.ToString("yyyy-MM-dd");
-            this.Parametros = Parametros;
+            if (Parametros != null)
+            {
+                CategoriaContaListPicker.ItemsSource = Parametros.CategoriaConta;
+                FormaPagamentoListPicker.ItemsSource = Parametros.FormaCobranca;
+                CentroResponsabilidadeListPicker.ItemsSource = Parametros.CentroResponsabilidade;
+                ContaBancoListPicker.ItemsSource = Parametros.ContaBanco;
+                Account.DataVencimento = InputDataVencimento.Date.ToString("yyyy-MM-dd");
+                this.Parametros = Parametros;
+            }
             //Verifica se conta esta em alteração
             if (account != null)
             {
-                this.Title = "Editar Conta";
+                lbTitle.Text = "Editar transação";
                 this.Account.Id = account.Id;
                 this.Account.EmpresaId = account.EmpresaId;
                 this.Account.TipoConta = account.TipoConta;
@@ -49,48 +53,61 @@ namespace ContasReceberApp.Views
                 this.Account.ValorDesconto = account.ValorDesconto;
                 this.Account.Status = account.Status;
                 if (this.Account.FormaPagamentoId != 0)
-                    FormaPagamentoListPicker.SelectedItem = this.Parametros.FormaCobranca.ToList().Find(p => p.Id.Equals(this.Account.FormaPagamentoId)).Nome;
+                    FormaPagamentoListPicker.SelectedItem = this.Parametros.FormaCobranca.ToList().Find(p => p.Id.Equals(this.Account.FormaPagamentoId));
                 if (this.Account.CategoriaContaId != 0)
-                    CategoriaContaListPicker.SelectedItem = this.Parametros.CategoriaConta.ToList().Find(p => p.Id.Equals(this.Account.CategoriaContaId)).Nome;
+                    CategoriaContaListPicker.SelectedItem = this.Parametros.CategoriaConta.ToList().Find(p => p.Id.Equals(this.Account.CategoriaContaId));
                 if (this.Account.CentroResponsabilidadeId != 0)
-                    CentroResponsabilidadeListPicker.SelectedItem = this.Parametros.CentroResponsabilidade.ToList().Find(p => p.Id.Equals(this.Account.CentroResponsabilidadeId)).Nome;
+                    CentroResponsabilidadeListPicker.SelectedItem = this.Parametros.CentroResponsabilidade.ToList().Find(p => p.Id.Equals(this.Account.CentroResponsabilidadeId));
                 if (this.Account.ContaBancoId != 0)
-                    ContaBancoListPicker.SelectedItem = this.Parametros.ContaBanco.ToList().Find(p => p.Id.Equals(this.Account.ContaBancoId)).Nome;
+                    ContaBancoListPicker.SelectedItem = this.Parametros.ContaBanco.ToList().Find(p => p.Id.Equals(this.Account.ContaBancoId));
             }
-            else
-                this.Title = "Inserir Conta";
             BindingContext = this;
         }
 
         private void FormaPagamentoListPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-           Account.FormaPagamentoId = this.Parametros.FormaCobranca.ToList().Find(p=> p.Nome.Equals(FormaPagamentoListPicker.SelectedItem.ToString())).Id;
+            Account.FormaPagamentoId = FormaPagamentoListPicker.SelectedItem != null ? (FormaPagamentoListPicker.SelectedItem as FormaCobranca).Id : 0;
+            FormaCobrancaPicker.IsVisible = Account.FormaPagamentoId > 0;
         }
 
         private void CategoriaContaListPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Account.CategoriaContaId = this.Parametros.CategoriaConta.ToList().Find(p => p.Nome.Equals(CategoriaContaListPicker.SelectedItem.ToString())).Id;
+            Account.CategoriaContaId = CategoriaContaListPicker.SelectedItem != null ? (CategoriaContaListPicker.SelectedItem as CategoriaConta).Id : 0;
+            CategoriaContaPicker.IsVisible = Account.CategoriaContaId > 0;
         }
 
         private void CentroresponsabilidadeListPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Account.CentroResponsabilidadeId = this.Parametros.CentroResponsabilidade.ToList().Find(p => p.Nome.Equals(CentroResponsabilidadeListPicker.SelectedItem.ToString())).Id;
+            Account.CentroResponsabilidadeId = CentroResponsabilidadeListPicker.SelectedItem != null ? (CentroResponsabilidadeListPicker.SelectedItem as CentroResponsabilidade).Id : 0;
+            CentroResponsabilidadePicker.IsVisible = Account.CentroResponsabilidadeId > 0;
         }
 
         private void ContaBancoListPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Account.ContaBancoId = this.Parametros.ContaBanco.ToList().Find(p => p.Nome.Equals(ContaBancoListPicker.SelectedItem.ToString())).Id;
+            Account.ContaBancoId = ContaBancoListPicker.SelectedItem != null ? (ContaBancoListPicker.SelectedItem as ContaBanco).Id : 0;
+            ContaBancariaPicker.IsVisible = Account.ContaBancoId > 0;
         }
 
         private void InputDataVencimento_DateSelected(object sender, DateChangedEventArgs e)
         {
             Account.DataVencimento = InputDataVencimento.Date.ToString("yyyy-MM-dd");
+            DataVencimentoDatePicker.IsVisible = !string.IsNullOrEmpty(Account.DataVencimento);
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "InserirAccount", Account);
             await Navigation.PopAsync();
+        }
+
+        private void CustomEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            NomeTransacaoCustomEntry.IsVisible = ((CustomEntry)sender).Text.Length > 0;
+        }
+
+        private void valorPagoBool_Toggled(object sender, ToggledEventArgs e)
+        {
+
         }
     }
 }

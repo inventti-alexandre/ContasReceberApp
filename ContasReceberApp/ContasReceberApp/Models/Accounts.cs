@@ -66,5 +66,11 @@ namespace ContasReceberApp.Models
 
         [JsonProperty("status")]
         public Status Status { get; set; }
+
+        [JsonIgnore]
+        public string PathIcon => TipoConta.ToUpper().Trim().Equals("R") ? "seta_longa_direita.png" : "seta_longa_esquerda.png";
+
+        [JsonIgnore]
+        public string Movimento => TipoConta.ToUpper().Trim().Equals("R") ? "ENTRADA" : "SAÍDA";
     }
 }
