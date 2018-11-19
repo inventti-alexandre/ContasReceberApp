@@ -30,8 +30,10 @@ namespace ContasReceberApp
                     (response, result) =>
                     {
                         String json = JObject.Parse(result)["accountStatement"].ToString();
-                        (BindingContext as AccountsViewModel).Entity = JsonConvert.DeserializeObject<AccountStatement>(json);
-                        AccountsListView.ItemsSource = ((BindingContext as AccountsViewModel).Entity as AccountStatement).Accounts;
+                        AccountsViewModel.Entity = JsonConvert.DeserializeObject<AccountStatement>(json);
+                        AccountsListView.ItemsSource = (AccountsViewModel.Entity as AccountStatement).Accounts;
+                        lbAccountsReceivable.Text = (AccountsViewModel.Entity as AccountStatement).AccountsReceivable.ToString("C2", new System.Globalization.CultureInfo("pt-BR"));
+                        lbAccountsPayable.Text = (AccountsViewModel.Entity as AccountStatement).AccountsPayable.ToString("C2", new System.Globalization.CultureInfo("pt-BR"));
                     },
 
                     //onFailure

@@ -34,7 +34,7 @@
                 <Grid
                     Margin="0,20,0,0"
                     VerticalOptions="StartAndExpand" 
-                    Padding="0"
+                    Padding="5"
                     HorizontalOptions="FillAndExpand" 
                     BackgroundColor="Transparent">
 
@@ -57,7 +57,7 @@
                                     LineBreakMode="NoWrap" 
                                     FontSize="16" 
                                     HorizontalOptions="StartAndExpand"/>
-                        <Label Text="{Binding Entity.AccountsPayable, Mode=TwoWay}" FontSize="16" HorizontalOptions="End"/>
+                        <Label x:Name="lbAccountsReceivable" FontSize="16" HorizontalOptions="End"/>
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
@@ -71,7 +71,7 @@
                                     LineBreakMode="NoWrap" 
                                     FontSize="16" 
                                     HorizontalOptions="StartAndExpand"/>
-                        <Label Text="{Binding Entity.AccountsReceivable, Mode=TwoWay}" FontSize="16" HorizontalOptions="End"/>
+                        <Label x:Name="lbAccountsPayable" FontSize="16" HorizontalOptions="End"/>
                     </StackLayout>
                 </Grid>
                 <BoxView HeightRequest="2" />
@@ -109,7 +109,7 @@
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
                                         <Label Text="{Binding Historico}" LineBreakMode="NoWrap" Font="18" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
-                                        <Label Text="{Binding ValorBruto}" FontSize="18" FontAttributes="Bold" HorizontalOptions="EndAndExpand"/>
+                                        <Label Text="{Binding ValorBrutoFormat}" FontSize="18" FontAttributes="Bold" HorizontalOptions="EndAndExpand"/>
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
                                         <Label Text="{Binding CategoriaConta}" FontSize="13" HorizontalOptions="StartAndExpand"/>

@@ -47,27 +47,35 @@
                                        HorizontalOptions="Center"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
-                    <Label Text="{Binding Historico}" LineBreakMode="NoWrap" FontSize="18" HorizontalOptions="StartAndExpand"/>
-                    <Label Text="{Binding ValorBruto}" FontSize="18" HorizontalOptions="EndAndExpand"/>
-                </StackLayout>
+                        <Label Text="{Binding Historico}" LineBreakMode="NoWrap" FontSize="18" HorizontalOptions="StartAndExpand"/>
+                    </StackLayout>
                 <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
                     <Label Text="{Binding CategoriaConta}" FontSize="13" HorizontalOptions="StartAndExpand"/>
-                </StackLayout>
+                    <Button Text="Editar"
+                            BindingContext="{Binding}"
+                            FontSize="13" 
+                            HorizontalOptions="EndAndExpand" 
+                            BorderWidth="3"
+                            BorderColor="{StaticResource NavigationPrimary}" 
+                            TextColor="{StaticResource NavigationPrimary}"
+                            BackgroundColor="White"
+                            Clicked="Button_Clicked"/>
+                 </StackLayout>
                 </Grid>
                 <BoxView Color="Black" WidthRequest ="100" HeightRequest="1"/>
                 <StackLayout Orientation="Horizontal" BackgroundColor="LightGray">
                     <Label Text="Valor bruto" LineBreakMode="NoWrap" FontSize="18" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
-                    <Label Text="{Binding ValorBruto}" FontSize="18" HorizontalOptions="EndAndExpand"/>
+                    <Label Text="{Binding ValorBrutoFormat}" FontSize="18" HorizontalOptions="EndAndExpand" TextColor="{StaticResource NavigationPrimary}"/>
                 </StackLayout>
                 <BoxView Color="Black" WidthRequest ="100" HeightRequest="1"/>
                 <StackLayout Orientation="Horizontal" BackgroundColor="LightGray">
                     <Label Text="Valor liquído" LineBreakMode="NoWrap" FontSize="18" FontAttributes="Bold" HorizontalOptions="StartAndExpand" BackgroundColor="LightGray"/>
-                    <Label Text="{Binding ValorLiquido}" FontSize="18" HorizontalOptions="EndAndExpand" BackgroundColor="LightGray"/>
+                    <Label Text="{Binding ValorLiquidoFormat}" FontSize="18" HorizontalOptions="EndAndExpand" BackgroundColor="LightGray" TextColor="Green"/>
                 </StackLayout>
                 <BoxView Color="Black" WidthRequest ="100" HeightRequest="0.4"/>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Data de Vencimento" LineBreakMode="NoWrap" FontSize="18" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
-                    <Label Text="{Binding DataVencimento}" FontSize="18" HorizontalOptions="EndAndExpand"/>
+                    <Label Text="{Binding DataVenctoFormat}" FontSize="18" HorizontalOptions="EndAndExpand"/>
                 </StackLayout>
                 <BoxView Color="Black" WidthRequest ="100" HeightRequest="0.4"/>
                 <StackLayout Orientation="Horizontal">
@@ -77,17 +85,17 @@
                 <BoxView Color="Black" WidthRequest ="100" HeightRequest="0.4"/>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Data crédito" LineBreakMode="NoWrap" FontSize="18" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
-                    <Label Text="{Binding DataPagamento}" FontSize="18" HorizontalOptions="EndAndExpand"/>
+                    <Label Text="{Binding DataPagFormat}" FontSize="18" HorizontalOptions="EndAndExpand"/>
                 </StackLayout>
                 <BoxView Color="Black" WidthRequest ="100" HeightRequest="0.4"/>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Valor multa" LineBreakMode="NoWrap" FontSize="18" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
-                    <Label Text="{Binding ValorMulta}" FontSize="18" HorizontalOptions="EndAndExpand"/>
+                    <Label Text="{Binding ValorMultaFormat}" FontSize="18" HorizontalOptions="EndAndExpand"/>
                 </StackLayout>
                 <BoxView Color="Black" WidthRequest ="100" HeightRequest="0.4"/>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Valor desconto" LineBreakMode="NoWrap" FontSize="18" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
-                    <Label Text="{Binding ValorDesconto}" FontSize="18" HorizontalOptions="EndAndExpand"/>
+                    <Label Text="{Binding ValorDescontoFormat}" FontSize="18" HorizontalOptions="EndAndExpand"/>
                 </StackLayout>
                 <BoxView Color="Black" WidthRequest ="100" HeightRequest="0.4"/>
                 <StackLayout Orientation="Horizontal">

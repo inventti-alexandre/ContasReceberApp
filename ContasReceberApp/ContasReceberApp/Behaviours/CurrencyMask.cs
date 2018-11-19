@@ -22,31 +22,36 @@ namespace ContasReceberApp.Behaviours
 
         private static void OnEntryTextChanged(object sender, TextChangedEventArgs args)
         {
-            if (!string.IsNullOrWhiteSpace(args.NewTextValue))
+            try
             {
-                bool ehCallback = false;
-                string texto = args.NewTextValue;
-
-                if (texto.Contains("R$"))
+                if (!string.IsNullOrWhiteSpace(args.NewTextValue))
                 {
-                    var valorNovoEmDecimal = ConverterReaisParaDecimal(texto);
-                    var valorAntigoEmDecimal = args.OldTextValue.Contains("R$") ? ConverterReaisParaDecimal(args.OldTextValue) : int.Parse(args.OldTextValue);
-                    ehCallback = valorNovoEmDecimal == valorAntigoEmDecimal;
+                    bool ehCallback = false;
+                    string texto = args.NewTextValue;
 
-                    texto = valorNovoEmDecimal.ToString();
-                }
-
-                if (!ehCallback)
-                {
-                    if (!string.IsNullOrEmpty(texto))
+                    if (texto.Contains("R$"))
                     {
-                        var textoFormatadoEmReais = (Decimal.Parse(texto) / 100).ToString("C", CultureInfo.GetCultureInfo("pt-BR"));
-                        texto = textoFormatadoEmReais;
+                        var valorNovoEmDecimal = ConverterReaisParaDecimal(texto);
+                        var valorAntigoEmDecimal = args.OldTextValue.Contains("R$") ? ConverterReaisParaDecimal(args.OldTextValue) : int.Parse(args.OldTextValue);
+                        ehCallback = valorNovoEmDecimal == valorAntigoEmDecimal;
+
+                        texto = valorNovoEmDecimal.ToString();
                     }
 
-                    ((Entry)sender).Text = texto;
+                    if (!ehCallback)
+                    {
+                        if (!string.IsNullOrEmpty(texto))
+                        {
+                            var textoFormatadoEmReais = (Decimal.Parse(texto) / 100).ToString("C", CultureInfo.GetCultureInfo("pt-BR"));
+                            texto = textoFormatadoEmReais;
+                        }
+
+                        ((Entry)sender).Text = texto;
+                    }
                 }
             }
+            catch { }
+
         }
 
         private static int ConverterReaisParaDecimal(string valor)

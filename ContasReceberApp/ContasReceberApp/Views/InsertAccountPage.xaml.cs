@@ -48,9 +48,9 @@ namespace ContasReceberApp.Views
                 this.Account.DataPagamento = account.DataPagamento;
                 this.Account.DataVencimento = account.DataVencimento;
                 this.Account.Historico = account.Historico;
-                this.Account.Valor = account.ValorBruto;
-                this.Account.ValorMulta = account.ValorMulta;
-                this.Account.ValorDesconto = account.ValorDesconto;
+                this.Account.Valor = account.ValorBruto.ToString("N2", new System.Globalization.CultureInfo("pt-BR"));
+                this.Account.ValorMulta = account.ValorMulta.ToString("N2", new System.Globalization.CultureInfo("pt-BR"));
+                this.Account.ValorDesconto = account.ValorDesconto.ToString("N2", new System.Globalization.CultureInfo("pt-BR"));
                 this.Account.Status = account.Status;
                 if (this.Account.FormaPagamentoId != 0)
                     FormaPagamentoListPicker.SelectedItem = this.Parametros.FormaCobranca.ToList().Find(p => p.Id.Equals(this.Account.FormaPagamentoId));

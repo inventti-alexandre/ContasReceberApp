@@ -23,5 +23,10 @@ namespace ContasReceberApp.Views
         {
             Navigation.PushAsync(new InsertAccountPage(App.Parametros));
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new InsertAccountPage(App.Parametros, ((Button)sender).BindingContext as Account));
+        }
     }
 }

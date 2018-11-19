@@ -68,6 +68,24 @@ namespace ContasReceberApp.Models
         public Status Status { get; set; }
 
         [JsonIgnore]
+        public string DataVenctoFormat => Convert.ToDateTime(DataVencimento).ToString("dd/MM/yyyy");
+
+        [JsonIgnore]
+        public string DataPagFormat => Convert.ToDateTime(DataPagamento).ToString("dd/MM/yyyy");
+
+        [JsonIgnore]
+        public string ValorBrutoFormat => ValorBruto.ToString("C2", new System.Globalization.CultureInfo("pt-BR"));
+
+        [JsonIgnore]
+        public string ValorLiquidoFormat => ValorLiquido.ToString("C2", new System.Globalization.CultureInfo("pt-BR"));
+
+        [JsonIgnore]
+        public string ValorMultaFormat => ValorMulta.ToString("C2", new System.Globalization.CultureInfo("pt-BR"));
+
+        [JsonIgnore]
+        public string ValorDescontoFormat => ValorDesconto.ToString("C2", new System.Globalization.CultureInfo("pt-BR"));
+
+        [JsonIgnore]
         public string PathIcon => TipoConta.ToUpper().Trim().Equals("R") ? "seta_longa_direita.png" : "seta_longa_esquerda.png";
 
         [JsonIgnore]

@@ -38,16 +38,28 @@ namespace ContasReceberApp.Models
         public string Historico { get; set; }
 
         [JsonProperty("valor")]
-        public decimal Valor { get; set; }
+        public decimal ValorJson => decimal.Parse(Valor.Replace("R$", ""));
+
+        [JsonIgnore]
+        public string Valor { get; set; }
 
         [JsonProperty("valorPago")]
-        public decimal ValorPago { get; set; }
+        public decimal ValorPagoJson => decimal.Parse(ValorPago.Replace("R$", ""));
+
+        [JsonIgnore]
+        public string ValorPago { get; set; }
 
         [JsonProperty("valorMulta")]
-        public decimal ValorMulta { get; set; }
+        public decimal ValorMultaJson => decimal.Parse(ValorMulta.Replace("R$", ""));
+
+        [JsonIgnore]
+        public string ValorMulta { get; set; }
 
         [JsonProperty("valorDesconto")]
-        public decimal ValorDesconto { get; set; }
+        public decimal ValorDescontoJson => decimal.Parse(ValorDesconto.Replace("R$", ""));
+
+        [JsonIgnore]
+        public string ValorDesconto { get; set; }
 
         [JsonProperty("status")]
         public Status Status { get; set; }
